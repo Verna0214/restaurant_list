@@ -19,9 +19,15 @@ app.get('/restaurants/:id', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
+  const keyword = req.query.keyword.trim()
   const restaurants = restaurantList.results.filter(item => item.name.toLowerCase().includes(keyword.toLowerCase()) || item.category.toLowerCase().includes(keyword.toLowerCase()))
-  res.render('search', { restaurants, keyword })
+  let noResult = false
+
+  if (!keyword.length || !restaurants.length) {
+    noResult = true
+  }
+
+  res.render('search', { restaurants, keyword, noResult})
 })
 
 app.get('/', (req, res) => {
