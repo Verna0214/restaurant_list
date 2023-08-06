@@ -12,6 +12,12 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 
 // router
+app.get('/restaurants/:id', (req, res) => {
+  const id = Number(req.params.id)
+  const restaurant = restaurantList.results.find(item => item.id === id)
+  res.render('show', { restaurant })
+})
+
 app.get('/', (req, res) => {
   const restaurants = restaurantList.results
   res.render('index', { restaurants })
