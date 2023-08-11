@@ -30,6 +30,24 @@ router.get('/search', (req, res) => {
   }
 })
 
+// create
+router.post('/new', (req, res) => {
+  const {name, name_en, category, image, location, phone, google_map, rating, description} = req.body
+  return Restaurant.create({ 
+    name,
+    name_en,
+    category,
+    image,
+    location,
+    phone,
+    google_map,
+    rating,
+    description
+  })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 // detail
 router.get('/:id', (req, res) => {
   const id = req.params.id

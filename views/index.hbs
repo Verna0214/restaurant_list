@@ -54,4 +54,84 @@
       </div>
     </div>
   </div>
+  
+  <div class="create-restaurant m-5 p-5" style="background: #FFE6D9; border-radius: 25px;">
+    <h1 class="text-center mb-4" style="color: orange; font-size: 35px; font-style: italic;">探索美食，我來推薦！</h1>
+    
+    <form action="/restaurants/new" method="POST">
+      {{!-- name --}}
+      <div class="mx-5 mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" name="name" class="form-control" id="name" placeholder="Mos Burger..." aria-describedby="name" required>
+        <div class="form-text" id="name" style="color: red;">*required</div>
+      </div>
+
+      {{!-- name_en --}}
+      <div class="mx-5 mb-3">
+        <label for="name_en" class="form-label">English Name</label>
+        <input type="text" name="name_en" class="form-control" id="name_en" placeholder="Mos Burger...">
+      </div>
+
+      {{!-- Category --}}
+      <div class="mx-5 mb-3">
+        <label for="category" class="form-label">Category</label>
+        <input class="form-control" name="category" list="categories" id="category" placeholder="Type to search...">
+        <datalist id="categories">
+          <option>義式餐廳</option>
+          <option>美式</option>
+          <option>酒吧</option>
+          <option>咖啡</option>
+          <option>中東料理</option>
+          <option>日本料理</option>
+        </datalist>
+        <div class="form-text" id="name" style="color: red;">*required</div>
+      </div>
+
+      {{!-- image --}}
+      <div class="mx-5 mb-3">
+        <label for="image" class="form-label">Restaurant's Photo</label>
+        <input type="text" name="image" class="form-control" id="image" placeholder="image URL...">
+      </div>
+
+      {{!-- location --}}
+      <div class="mx-5 mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input type="text" name="location" class="form-control" id="location" placeholder="臺北市大安區..." aria-describedby="location" required>
+        <div class="form-text" id="location" style="color: red;">*required</div>
+      </div>
+
+      {{!-- phone --}}
+      <div class="mx-5 mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="text" name="phone" class="form-control" id="phone" placeholder="022928..." aria-describedby="phone" required>
+        <div class="form-text" id="phone" style="color: red;">*required</div>
+      </div>
+
+      {{!-- google_map --}}
+      <div class="mx-5 mb-3">
+        <label for="google_map" class="form-label">Google Map</label>
+        <input type="text" name="google_map" class="form-control" id="google_map" placeholder="https://goo.gl/maps/...">
+      </div>
+
+      {{!-- rating --}}
+      <div class="mx-5 mb-3">
+        <label for="rating" class="form-label">Rating</label>
+        <input type="number" name="rating" class="form-control" id="rating" aria-describedby="rating" min="0" max="5" step="0.1" required>
+        <div class="form-text" id="rating" style="color: red;">*required</div>
+      </div>
+
+      {{!-- description --}}
+      <div class="mx-5 mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea name="description" class="form-control" id="description" style="height: 100px; resize: vertical;"
+          placeholder="Type something about the restaurant..." aria-describedby="description" required></textarea>
+        <div class="form-text" id="description" style="color: red;">*required</div>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-warning">Create</button>
+      </div>
+    </form>
+  <div>
+  
 </div>
