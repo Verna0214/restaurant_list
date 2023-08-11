@@ -2,7 +2,35 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
-// router
+// search
+router.get('/search', (req, res) => {
+  const keyword = req.query.keyword.trim()
+  let restaurants = []
+  let noResult = false // alert
+
+  // 判斷使用者是否有輸入搜尋文字
+  if (keyword) {
+    Restaurant.find({
+      $or: [ // 利用 mongoDB的運算式匹配各屬性
+        { name: { $regex: keyword, $options: 'i' } },  // 運用 $regex 模糊比對及大小寫
+        { name_en: { $regex: keyword, $options: 'i' } },
+        { category: { $regex: keyword, $options: 'i' } }
+      ]
+    })
+      .lean()
+      .then((results) => {
+        restaurants = results  // 將匹配結果賦值 restaurants，下一步檢查
+        noResult = !restaurants.length
+        return res.render('index', { restaurants, keyword, noResult })
+      })
+      .catch(error => console.log(error))
+  } else { // 使用者若沒有輸入搜尋文字
+    noResult = true
+    return res.render('index', { restaurants, keyword, noResult })
+  }
+})
+
+// detail
 router.get('/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
