@@ -2,8 +2,9 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 
+const Restaurant = require('./models/restaurant')
+const router = require('./routes')
 require('./config/mongoose')
-const restaurantList = require('./restaurant.json')
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -14,6 +15,8 @@ app.set('view engine', 'hbs')
 
 // set static
 app.use(express.static('public'))
+// use router
+app.use(router)
 
 // router
 app.get('/restaurants/:id', (req, res) => {
@@ -38,11 +41,6 @@ app.get('/search', (req, res) => {
   }
 
   res.render('index', { restaurants, keyword, noResult})
-})
-
-app.get('/', (req, res) => {
-  const restaurants = restaurantList.results
-  res.render('index', { restaurants })
 })
 
 app.listen(port, () => {
