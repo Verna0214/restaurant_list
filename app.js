@@ -1,7 +1,16 @@
+// require related modules
 const express = require('express')
 const exphbs = require('express-handlebars')
-const app = express()
+
+// 判斷執行環境再載入 dotenv
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+require('./config/mongoose')
 const restaurantList = require('./restaurant.json')
+
+const app = express()
 const port = process.env.PORT || 3000
 
 // set handlebars
