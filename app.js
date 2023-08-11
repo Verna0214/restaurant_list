@@ -18,12 +18,6 @@ app.use(express.static('public'))
 // use router
 app.use(router)
 
-// router
-app.get('/restaurants/:id', (req, res) => {
-  const id = Number(req.params.id)
-  const restaurant = restaurantList.results.find(item => item.id === id)
-  res.render('show', { restaurant })
-})
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
