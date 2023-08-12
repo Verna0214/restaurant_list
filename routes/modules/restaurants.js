@@ -2,6 +2,15 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
+// edit page
+router.get('/:id/edit', (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+
 // search
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
