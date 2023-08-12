@@ -39,6 +39,11 @@ router.get('/search', (req, res) => {
   }
 })
 
+// new page
+router.get('/new', (req, res) => {
+  res.render('new')
+})
+
 // detail page
 router.get('/:id', (req, res) => {
   const id = req.params.id
