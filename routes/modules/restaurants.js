@@ -87,6 +87,29 @@ router.put('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// delete
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+  let warning = false
+
+  if (id) {
+    return Restaurant.findById(id)
+      .then((restaurant) => {
+        if (!restaurant) {
+          throw new Error('Restaurant not found!')
+        }
+        return restaurant.deleteOne()
+      })
+      .then(() => {
+        return Restaurant.find().lean()
+      })
+      .then((restaurants) => {
+        warning = true
+        res.render('index', { restaurants, warning })
+      })
+      .catch(error => console.log(error))
+  }
+})
 
 
 module.exports = router
