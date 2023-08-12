@@ -30,31 +30,34 @@
         {{/if}}
         {{!-- render data --}}
         {{#each restaurants}}
-        <a href="/restaurants/{{this._id}}" class="text-secondary">
+        <div class="text-secondary">
           <div class="card mb-3">
             <img class="card-img-top" src="{{this.image}}"
               alt="{{this.name}}">
             <div class="card-body p-3">
-              <h6 class="card-title mb-1">{{this.name}}</h6>
-
+              <div class="restaurant-title d-flex justify-content-between">
+                <h6 class="card-title mb-1">{{this.name}}</h6>
+                <span class="badge rounded-pill bg-danger font-weight-normal">
+                  {{this.rating}}
+                  <i class="fas fa-star fa-xs"></i>
+                </span>
+              </div>
               <div class="restaurant-category mb-1">
                 <i class="fas fa-utensils pr-2"></i> {{this.category}}
               </div>
-
-              <span class="badge rounded-pill bg-danger font-weight-normal">
-                {{this.rating}}
-                <i class="fas fa-star fa-xs"></i>
-              </span>
-
+              <div class="restaurant-link mt-2">
+                <a href="/restaurants/{{this._id}}"><span class="badge bg-secondary">Detail</span></a>
+              </div>
             </div>
           </div>
-        </a>
+        </div>
         {{/each}}
         
       </div>
     </div>
   </div>
   
+  {{!-- Create section --}}
   <div class="create-restaurant m-5 p-5" style="background: #FFE6D9; border-radius: 25px;">
     <h1 class="text-center mb-4" style="color: orange; font-size: 35px; font-style: italic;">探索美食，我來推薦！</h1>
     
