@@ -20,7 +20,7 @@ module.exports = (app) => {
         }
         return done(null, user)
       })
-      .catch(err => done(err, null))
+      .catch(err => done(err, false))
   }))
 
   // 序列化

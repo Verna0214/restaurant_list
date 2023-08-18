@@ -13,13 +13,6 @@ router.get('/register', (req, res) => {
   res.render('register')
 })
 
-// logout
-router.get('/logout', (req, res) => {
-  req.logout(() => {
-    res.redirect('/users/login')
-  })
-})
-
 // register post
 router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
@@ -52,5 +45,13 @@ router.post('/login', passport.authenticate('local',{
   failureRedirect: '/users/login',
   successRedirect: '/',
 }))
+
+// logout
+router.get('/logout', (req, res) => {
+  req.logout(() => {
+    req.flash('success_msg', '已成功登出！')
+    res.redirect('/users/login')
+  })
+})
 
 module.exports = router
