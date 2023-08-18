@@ -3,6 +3,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
+const usePassport = require('./config/passport')
 // 判斷執行環境再載入 dotenv
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -23,12 +24,14 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 // use method-override
 app.use(methodOverride('_method'))
-// user express-session
+// use express-session
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
 }))
+// use passport
+usePassport(app)
 // use router
 app.use(router)
 // start server
