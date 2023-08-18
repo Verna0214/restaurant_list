@@ -18,22 +18,28 @@ const restaurantSchema = new Schema ({
   },
   location: {
     type: String,
-    require: true
+    required: true
   },
   phone: {
     type: String,
-    require: true
+    required: true
   },
   google_map: {
     type: String,
   },
   rating: {
     type: Number,
-    require: true
+    required: true
   },
   description: {
     type: String,
-    require: true
+    required: true
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true
   }
 })
 
