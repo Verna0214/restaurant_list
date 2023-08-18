@@ -16,21 +16,23 @@ router.get('/register', (req, res) => {
 // register post
 router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
-  
+  const errors = []
+
   if (!email || !password || !confirmPassword) {
-    console.log('必填欄位未完成！')
-    return res.render('register', { name, email, password, confirmPassword })
+    errors.push('必填欄位未完成！')
   }
   if (password !== confirmPassword) {
-    console.log('密碼與確認密碼不相符！')
-    return res.render('register', { name, email, password, confirmPassword })
+    errors.push('密碼與確認密碼不相符！')
+  }
+  if (errors.length) {
+    return res.render('register', { errors, name, email, password, confirmPassword })
   }
 
   User.findOne({ email })
     .then((user) => {
       if (user) {
-        console.log('使用者曾已註冊！')
-        return res.render('register', { name, email, password, confirmPassword })
+        errors.push('使用者曾已註冊！')
+        return res.render('register', { errors, name, email, password, confirmPassword })
       }
 
       return User.create({ name, email, password })
