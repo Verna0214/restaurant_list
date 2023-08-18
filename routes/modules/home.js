@@ -5,8 +5,9 @@ const Restaurant = require('../../models/restaurant')
 // index page
 router.get('/', (req, res) => {
   const sort = req.query.sortType
+  const userId = req.user._id
 
-  Restaurant.find()
+  Restaurant.find({ userId })
     .lean()
     .then((allRestaurants) => {
       let restaurants = [...allRestaurants]
