@@ -23,6 +23,17 @@ VV Restaurant List
 - mongoose @7.4.2
 - dotenv @16.3.1
 
+## User Seed
+1. User 1 :
+  - name: user1
+  - email: user1@example.com
+  - password: 12345678
+
+2. User 2 :
+  - name: user2
+  - email: user2@example.com
+  - password: 12345678
+
 ## Installation
 1. 下載本專案
 ```
@@ -54,6 +65,8 @@ npm run dev
 ```
 
 ## Features
+- 使用者可以創建帳號密碼。
+- 使用者可以使用 Facebook 登入。
 - 使用者可以在首頁瀏覽全部的餐廳資料。
 - 使用者可以點選 Detail 查看任一筆餐廳的詳細內容。
 - 使用者可以點選 Create 新增任一筆餐廳的詳細內容。
